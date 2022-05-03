@@ -166,7 +166,11 @@ button {
 
 /* additional */
 
-.btn__reset:hover {
-  background-color: #445069;
+.btn__reset:hover,
+div.keyrow button:hover {
+  background-color: #2269f9;
   cursor: pointer;
+}
+
+ {
 }
