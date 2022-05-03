@@ -3,6 +3,7 @@ const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
 const startGame = document.querySelector(".btn__reset");
 const listItem = document.querySelector("#phrase ul");
+const tries = document.querySelectorAll("#scoreboard img");
 
 /* phrases array containing 5 different phrases as strings */
 const phrases = [
@@ -45,3 +46,16 @@ function addPhraseToDisplay(arr) {
 }
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
+
+/* Function that accepts a letter as a parameter */
+function checkLetter(letter) {
+  const checkLetter = document.querySelectorAll(".letter");
+  let foundLetter = null;
+  for (let i = 0; i < checkLetter.length; i++) {
+    if (checkLetter[i].textContent === letter) {
+      checkLetter[i].className = "show";
+      foundLetter = true;
+    }
+  }
+  return foundLetter;
+}
