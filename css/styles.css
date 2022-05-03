@@ -90,13 +90,29 @@ button {
   border-radius: 5px;
 }
 
+/* EXCEEDS EXPECTATIONS REQUIREMENTS: 
+Transitions have been added to the phrase display  */
+.letter:hover {
+  background: #76ce82;
+  box-shadow: rgba(6, 24, 44, 0.5) 0px 0px 0px 1px;
+  transition: var(--transition);
+}
+
 .space {
   width: 15px;
 }
 
 .show {
-  color: #000;
-  background-color: #76ce82;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: var(--font-size-medium);
+  height: 65px;
+  width: 65px;
+  padding: 20px 1px 0 1px;
+  margin-right: 2px;
+  color: black;
+  background: #76ce82;
+  border-radius: 5px;
 }
 
 /* Keyboard */
@@ -164,10 +180,11 @@ button {
   color: var(--color-lose);
 }
 
-/* additional */
+/* OWN CSS */
 
 .btn__reset:hover,
 div.keyrow button:hover {
   background-color: #2269f9;
   cursor: pointer;
+  box-shadow: rgba(6, 24, 44, 0.5) 0px 0px 0px 1px;
 }

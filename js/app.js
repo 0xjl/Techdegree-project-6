@@ -3,7 +3,7 @@ const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
 const startGame = document.querySelector(".btn__reset");
 const listItem = document.querySelector("#phrase ul");
-const tries = document.querySelectorAll("#scoreboard img");
+const tries = document.querySelectorAll("li.tries");
 
 /* phrases array containing 5 different phrases as strings */
 const phrases = [
@@ -59,3 +59,15 @@ function checkLetter(letter) {
   }
   return foundLetter;
 }
+
+qwerty.addEventListener("click", (e) => {
+  if (e.target.tagName === "BUTTON") {
+    e.target.className = "chosen";
+    e.target.disabled = true;
+    let letterChecked = checkLetter(e.target.textContent);
+    if (letterChecked === null) {
+      tries[missed].firstElementChild.src = "images/lostHeart.png";
+      missed += 1;
+    }
+  }
+});
