@@ -29,3 +29,19 @@ function getRandomPhraseAsArray(arr) {
   const charArray = randomPhrase.split("");
   return charArray;
 }
+
+/* SET THE GAME DISPLAY */
+function addPhraseToDisplay(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let li = document.createElement("li");
+    li.textContent = arr[i];
+    if (arr[i] === " ") {
+      li.className = "space";
+    } else {
+      li.className = "letter";
+    }
+    listItem.appendChild(li);
+  }
+}
+const phraseArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(phraseArray);
