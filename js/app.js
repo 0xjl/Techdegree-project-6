@@ -20,7 +20,11 @@ let missed = 0;
 
 /* START THE GAME */
 startGame.addEventListener("click", () => {
+  let restart = startGame.textContent;
   overlay.style.display = "none";
+  if (restart === "Restart?") {
+    resetGame();
+  }
 });
 
 /* Create a character array from a random array function. */
@@ -67,7 +71,6 @@ qwerty.addEventListener("click", (e) => {
     e.target.className = "chosen";
     e.target.disabled = true;
     let letterChecked = checkLetter(e.target.textContent);
-    console.log(letterChecked);
     if (letterChecked === null) {
       /* NOTE TO SELF: THIS MAY COME IN HANDY IN THE FUTURE */
       tries[missed].firstElementChild.src = "images/lostHeart.png";
@@ -81,17 +84,43 @@ qwerty.addEventListener("click", (e) => {
 function checkWin() {
   const letters = document.getElementsByClassName("show");
   const show = document.getElementsByClassName("letter");
-  console.log(letters);
-  console.log(show);
   if (letters.length === show.length) {
     overlay.classList.add("win");
     overlay.style.display = "flex";
     overlay.children[0].textContent = "SUCCESS!";
-    overlay.children[1].textContent = "Restart";
+    overlay.children[1].textContent = "Restart?";
   } else if (missed >= 5) {
     overlay.classList.add("lose");
     overlay.style.display = "flex";
     overlay.children[0].textContent = "FAILURE!";
     overlay.children[1].textContent = "Restart?";
   }
+}
+
+/* EXCEEDS EXPECTATIONS REQUIREMENT: RESET THE GAME */
+
+function resetGame() {
+  const buttons = document.getElementsByTagName("button");
+  const li = document.querySelectorAll("ul li");
+  /* RESETS THE HEARTS */
+  for (let i = 0; i < tries.length; i++) {
+    tries[i].firstElementChild.src = "images/liveHeart.png";
+  }
+  /* RESETS YOUR LIVES */
+  missed = 0;
+
+  /* RESETS THE LIST ITEMS */
+  for (let i = 0; i < li.length; i++) {
+    li[i].className = "";
+    li[i].textContent = "";
+  }
+
+  /* RESETS THE CHOSEN KEYBOARD KEYS */
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].className = "";
+    buttons[i].disabled = false;
+  }
+  /* CREATES A NEW PHRASE */
+  const phraseArray = getRandomPhraseAsArray(phrases);
+  addPhraseToDisplay(phraseArray);
 }
