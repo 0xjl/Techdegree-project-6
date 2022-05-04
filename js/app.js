@@ -1,10 +1,10 @@
 /* GLOBAL VARIABLES */
+const overlay = document.getElementById("overlay");
 const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
 const startGame = document.querySelector(".btn__reset");
 const listItem = document.querySelector("#phrase ul");
 const tries = document.querySelectorAll("li.tries");
-let overlay = document.getElementById("overlay");
 
 /* phrases array containing 5 different phrases as strings */
 const phrases = [
@@ -15,7 +15,7 @@ const phrases = [
   "never give up",
 ];
 
-/* USER SCORE */
+/* TRACK PLAYER LIVES */
 let missed = 0;
 
 /* START THE GAME */
@@ -27,7 +27,7 @@ startGame.addEventListener("click", () => {
   }
 });
 
-/* Create a character array from a random array function. */
+/* PICKS A RANDOM STRING AND CONVERTS IT INTO AN ARRAY OF INDIVIDUAL CHARACTERS */
 function getRandomPhraseAsArray(arr) {
   const random = Math.floor(Math.random() * phrases.length);
   const randomPhrase = arr[random];
@@ -35,7 +35,7 @@ function getRandomPhraseAsArray(arr) {
   return charArray;
 }
 
-/* SET THE GAME DISPLAY */
+/* DISPLAYS ANY ARRAY PASSED TO IT */
 function addPhraseToDisplay(arr) {
   for (let i = 0; i < arr.length; i++) {
     const li = document.createElement("li");
@@ -52,7 +52,7 @@ function addPhraseToDisplay(arr) {
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
 
-/* Function that accepts a letter as a parameter */
+/* CHECKS IF LETTER OF CHOSEN BUTTON IS FOUND AND THEN DISPLAYS IT */
 function checkLetter(letter) {
   const checkLetter = document.querySelectorAll(".letter");
   let foundLetter = null;
@@ -81,9 +81,10 @@ qwerty.addEventListener("click", (e) => {
   }
 });
 
+/* CHECKS IF ALL LETTERS OF THE PHRASE ARE SHOWN */
 function checkWin() {
-  const letters = document.getElementsByClassName("show");
-  const show = document.getElementsByClassName("letter");
+  const show = document.getElementsByClassName("show");
+  const letters = document.getElementsByClassName("letter");
   if (letters.length === show.length) {
     overlay.classList.add("win");
     overlay.style.display = "flex";
@@ -98,18 +99,19 @@ function checkWin() {
 }
 
 /* EXCEEDS EXPECTATIONS REQUIREMENT: RESET THE GAME */
-
 function resetGame() {
   const buttons = document.getElementsByTagName("button");
   const li = document.querySelectorAll("ul li");
+  overlay.className = "start";
+  listItem.innerHTML = "";
+  missed = 0;
+
   /* RESETS THE HEARTS */
   for (let i = 0; i < tries.length; i++) {
     tries[i].firstElementChild.src = "images/liveHeart.png";
   }
-  /* RESETS YOUR LIVES */
-  missed = 0;
 
-  /* RESETS THE LIST ITEMS */
+  /* RESETS LI */
   for (let i = 0; i < li.length; i++) {
     li[i].className = "";
     li[i].textContent = "";
@@ -120,7 +122,8 @@ function resetGame() {
     buttons[i].className = "";
     buttons[i].disabled = false;
   }
-  /* CREATES A NEW PHRASE */
+
+  /* ADDS NEW PHRASE TO DISPLAY */
   const phraseArray = getRandomPhraseAsArray(phrases);
   addPhraseToDisplay(phraseArray);
 }
