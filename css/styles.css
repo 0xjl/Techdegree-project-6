@@ -113,6 +113,9 @@ Transitions have been added to the phrase display  */
   color: black;
   background: #76ce82;
   border-radius: 5px;
+  /* ADDED TRANSITION TO LETTERS AS THEY ARE REVEALED */
+  transition: all 0.15s ease-in-out;
+  animation: ownTransition 0.15s;
 }
 
 /* Keyboard */
@@ -187,4 +190,14 @@ div.keyrow button:hover {
   background-color: #2269f9;
   cursor: pointer;
   box-shadow: rgba(6, 24, 44, 0.5) 0px 0px 0px 1px;
+}
+
+/* MY FIRST KEYFRAME */
+@keyframes ownTransition {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }

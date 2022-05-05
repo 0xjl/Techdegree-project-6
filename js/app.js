@@ -72,10 +72,8 @@ qwerty.addEventListener("click", (e) => {
     e.target.disabled = true;
     let letterChecked = checkLetter(e.target.textContent);
     if (letterChecked === null) {
-      /* NOTE TO SELF: THIS MAY COME IN HANDY IN THE FUTURE */
       tries[missed].firstElementChild.src = "images/lostHeart.png";
       missed += 1;
-      /* THIS END OF NOTE TO SELF */
     }
     checkWin();
   }
