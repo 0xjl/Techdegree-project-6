@@ -5,6 +5,35 @@ const phrase = document.getElementById("phrase");
 const startGame = document.querySelector(".btn__reset");
 const listItem = document.querySelector("#phrase ul");
 const tries = document.querySelectorAll("li.tries");
+const fxLayer = document.getElementById("fx-layer");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* CORRECT-GUESS FEEDBACK: a shower of money emoji falling across the screen */
+const moneyEmojis = ["💵", "💰", "💸"];
+
+function spawnMoneyRain() {
+  if (reduceMotion) return;
+  for (let i = 0; i < 16; i++) {
+    const bill = document.createElement("span");
+    bill.className = "fx-money";
+    bill.textContent = moneyEmojis[Math.floor(Math.random() * moneyEmojis.length)];
+    bill.style.setProperty("--x", Math.random() * 100 + "%");
+    bill.style.setProperty("--dur", 2 + Math.random() * 1.5 + "s");
+    bill.style.setProperty("--delay", Math.random() * 0.4 + "s");
+    bill.style.setProperty("--spin", (Math.random() > 0.5 ? 1 : -1) * (360 + Math.random() * 360) + "deg");
+    fxLayer.appendChild(bill);
+    bill.addEventListener("animationend", () => bill.remove());
+  }
+}
+
+/* WRONG-GUESS FEEDBACK: a giant red cross flashes over the screen */
+function spawnRedCross() {
+  if (reduceMotion) return;
+  const cross = document.createElement("div");
+  cross.className = "fx-cross";
+  fxLayer.appendChild(cross);
+  cross.addEventListener("animationend", () => cross.remove());
+}
 
 /* phrases array containing 5 different phrases as strings */
 const phrases = [
@@ -74,6 +103,9 @@ qwerty.addEventListener("click", (e) => {
     if (letterChecked === null) {
       tries[missed].firstElementChild.src = "images/lostHeart.png";
       missed += 1;
+      spawnRedCross();
+    } else {
+      spawnMoneyRain();
     }
     checkWin();
   }

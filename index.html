@@ -60,6 +60,11 @@
     </svg>
   </button>
 
+  <!-- Populated at runtime by app.js with money-rain/red-cross feedback.
+       Kept separate from the game elements so it can never collide with
+       their className-driven state. -->
+  <div id="fx-layer" class="pointer-events-none fixed inset-0 z-[65] overflow-hidden" aria-hidden="true"></div>
+
   <div class="main-container relative">
     <!-- #overlay's class is fully replaced by app.js (start/win/lose) and its two
          children are addressed by index (h2 then a), so both stay untouched here. -->
