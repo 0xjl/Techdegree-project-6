@@ -5,24 +5,42 @@
   <meta charset="utf-8">
   <title>Wheel of Success!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: { brand: { DEFAULT: '#6633ff', dark: '#4c1fd6', light: '#a78bfa' } }
+        }
+      }
+    }
+  </script>
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased">
   <div class="main-container">
+    <!-- #overlay's class is fully replaced by app.js (start/win/lose) and its two
+         children are addressed by index (h2 then a), so both stay untouched here. -->
     <div id="overlay" class="start">
       <h2 class="title">Wheel of Success</h2>
       <a class="btn__reset">Start Game</a>
     </div>
 
-    <div id="banner" class="section">
-      <h2 class="header">Wheel of Success</h2>
+    <div id="banner" class="section pt-10">
+      <h2 class="header font-sans">Wheel of Success</h2>
     </div>
 
-    <div id="phrase" class="section">
-      <ul></ul>
+    <div id="phrase" class="section mx-auto w-full max-w-3xl px-4">
+      <ul class="flex flex-wrap items-center justify-center gap-1.5"></ul>
     </div>
-    <div id="qwerty" class="section">
+
+    <div id="qwerty" class="section mx-auto w-full max-w-2xl px-2">
       <div class="keyrow">
         <button>q</button><button>w</button><button>e</button><button>r</button><button>t</button><button>y</button><button>u</button><button>i</button><button>o</button><button>p</button>
       </div>
@@ -34,13 +52,13 @@
       </div>
     </div>
 
-    <div id="scoreboard" class="section">
-      <ol>
-        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px"></li>
-        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px"></li>
-        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px"></li>
-        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px"></li>
-        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px"></li>
+    <div id="scoreboard" class="section pb-10">
+      <ol class="flex items-center justify-center gap-2">
+        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px" class="drop-shadow-sm"></li>
+        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px" class="drop-shadow-sm"></li>
+        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px" class="drop-shadow-sm"></li>
+        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px" class="drop-shadow-sm"></li>
+        <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px" class="drop-shadow-sm"></li>
       </ol>
     </div>
   </div>
