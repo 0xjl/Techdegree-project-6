@@ -68,9 +68,9 @@ function checkLetter(letter) {
 qwerty.addEventListener("click", (e) => {
   e.preventDefault();
   if (e.target.tagName === "BUTTON") {
-    e.target.className = "chosen";
-    e.target.disabled = true;
     let letterChecked = checkLetter(e.target.textContent);
+    e.target.className = letterChecked ? "chosen correct" : "chosen wrong";
+    e.target.disabled = true;
     if (letterChecked === null) {
       tries[missed].firstElementChild.src = "images/lostHeart.png";
       missed += 1;
@@ -98,7 +98,7 @@ function checkWin() {
 
 /* EXCEEDS EXPECTATIONS REQUIREMENT: RESET THE GAME */
 function resetGame() {
-  const buttons = document.getElementsByTagName("button");
+  const buttons = qwerty.getElementsByTagName("button");
   const li = document.querySelectorAll("ul li");
   overlay.className = "start";
   listItem.innerHTML = "";
