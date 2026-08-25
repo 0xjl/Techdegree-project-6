@@ -276,6 +276,11 @@ h2 {
   justify-content: center;
   gap: 1.5rem;
   inset: 0;
+  /* Without an explicit z-index, this fixed element and .main-container
+     (position: relative, z-index: auto) stack purely by DOM order, and
+     .main-container comes later — letting the scoreboard hearts show
+     through on top of the overlay. */
+  z-index: 50;
 }
 
 .title {
